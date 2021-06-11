@@ -1,0 +1,58 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://World.gd" type="Script" id=1]
+[ext_resource path="res://Ship.tscn" type="PackedScene" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 26.5796, 220.307 )
+
+[node name="World" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Ship" parent="." instance=ExtResource( 2 )]
+position = Vector2( 410.029, 255.44 )
+
+[node name="Ship2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 217.206, 349.732 )
+
+[node name="Ship3" parent="." instance=ExtResource( 2 )]
+position = Vector2( 941.879, 359.267 )
+
+[node name="Ship4" parent="." instance=ExtResource( 2 )]
+position = Vector2( 804.149, 200.348 )
+
+[node name="Ship5" parent="." instance=ExtResource( 2 )]
+position = Vector2( 639.932, 215.18 )
+
+[node name="Bouncers" type="Node" parent="."]
+
+[node name="LeftBouncer" type="StaticBody2D" parent="Bouncers" groups=[
+"bouncer",
+]]
+collision_layer = 2
+collision_mask = 0
+
+[node name="rect" type="CollisionShape2D" parent="Bouncers/LeftBouncer"]
+shape = SubResource( 1 )
+
+[node name="CenterBouncer" type="StaticBody2D" parent="Bouncers" groups=[
+"bouncer",
+]]
+collision_layer = 2
+collision_mask = 0
+
+[node name="rect" type="CollisionShape2D" parent="Bouncers/CenterBouncer"]
+shape = SubResource( 1 )
+
+[node name="RightBouncer" type="StaticBody2D" parent="Bouncers" groups=[
+"bouncer",
+]]
+collision_layer = 2
+collision_mask = 0
+
+[node name="rect" type="CollisionShape2D" parent="Bouncers/RightBouncer"]
+shape = SubResource( 1 )
+
+[node name="LeftWorld" type="Node" parent="."]
+
+[node name="RightWorld" type="Node" parent="."]

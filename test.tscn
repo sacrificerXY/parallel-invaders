@@ -1,0 +1,27 @@
+[gd_scene format=2]
+
+[node name="test" type="PanelContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 1273.0
+margin_bottom = 713.0
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer"]
+margin_right = 631.0
+margin_bottom = 706.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PanelContainer2" type="PanelContainer" parent="HBoxContainer"]
+margin_left = 635.0
+margin_right = 1266.0
+margin_bottom = 706.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
