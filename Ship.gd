@@ -13,7 +13,7 @@ var hp := 0
 var start_x: float
 var delta_x: float
 var delta_timer: float
-var sway_amount := 40
+var sway_amount := 30
 var sway_time_factor: float = 1
 
 var row_group := 'fish'

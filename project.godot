@@ -14,6 +14,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Bullet.gd"
 }, {
+"base": "Line2D",
+"class": "DLink",
+"language": "GDScript",
+"path": "res://DLink.gd"
+}, {
 "base": "Ship",
 "class": "LinkedShip",
 "language": "GDScript",
@@ -26,6 +31,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Bullet": "",
+"DLink": "",
 "LinkedShip": "",
 "Ship": ""
 }

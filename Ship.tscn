@@ -10,7 +10,7 @@ extents = Vector2( 30.6751, 11.1295 )
 "damageable",
 ]]
 collision_layer = 16
-collision_mask = 6
+collision_mask = 4
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -18,5 +18,4 @@ modulate = Color( 1, 0.380392, 0.380392, 1 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
-scale = Vector2( 1, 0.342716 )
 texture = ExtResource( 1 )

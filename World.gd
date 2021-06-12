@@ -43,6 +43,13 @@ func adjust_bouncer(area, pos: float):
 	area.position.y = screen_size.y / 2
 	rect.extents.y = screen_size.y / 2
 	rect.extents.x = 20
+	print(rect.extents)
+	if pos == 0.5:
+		rect.extents.x = 80
+#		assert(false)
+	else:
+		print('qwe')
+	print(rect.extents)
 	
 	
 func _physics_process(delta):
@@ -64,7 +71,6 @@ func _physics_process(delta):
 			spawn_linked_ships()
 			
 	else: assert(false)
-	print()
 			
 
 func spawn_ships(count: int, start_pos: float, focus: String = ''):
@@ -95,6 +101,10 @@ func spawn_linked_ships():
 	add_child(rship)
 	lship.link_to(rship)
 	rship.link_to(lship)
+	var link: DLink = preload('res://DLink.tscn').instance()
+	link.link(lship, rship)
+	link.position = Vector2.ZERO
+	add_child(link)
 	
 
 func add_bullet(bullet: Bullet):
