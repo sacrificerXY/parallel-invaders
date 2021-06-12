@@ -15,6 +15,7 @@ var spawn_timer: float = 0.0
 
 
 func _ready():
+	randomize()
 	assert(g.world == null)
 	g.world = self
 	adjust_bouncer(find_node('LeftBouncer'), 0.0)
@@ -57,7 +58,7 @@ func _physics_process(delta):
 		spawn_timer -= delta
 	else:
 		spawn_timer += spawn_cooldown
-		if randf() < 0.8:
+		if randf() < 0.5:
 			if past_focus == FOCUS_LEFTY or past_focus == FOCUS_BOTH:
 				spawn_ships(randi() % 5 + 1, 0, 'lefty')
 			elif past_focus == FOCUS_RIGHTY or past_focus == FOCUS_BOTH:
@@ -132,7 +133,18 @@ func check_world_focus():
 #func _process(delta):
 #	pass
 
-func spawn_powerup(pos: Vector2):
+func spawn_powerup(pos: Vector2, focus):
+	assert(focus == 'lefty' or focus == 'righty')
 	var p: Powerup = preload('res://Powerup.tscn').instance()
 	p.position = pos
+	p.spawn_side = focus
 	add_child(p)
+
+
+func is_left(pos: Vector2):
+	return pos.x < screen_size.x * 0.5
+	
+	
+func add_gunner(gg):
+	gg.position.y = screen_size.y - 32
+	add_child(gg)

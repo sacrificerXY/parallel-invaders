@@ -1,4 +1,5 @@
 extends KinematicBody2D
+class_name Gunner
 
 
 var speed: float = 100

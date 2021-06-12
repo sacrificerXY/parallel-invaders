@@ -25,4 +25,5 @@ func on_partner_destroyed(ship: Ship):
 
 func queue_free():
 	.queue_free()
-	g.world.spawn_powerup(position)
+	var focus = 'lefty' if g.world.is_left(position) else 'righty'
+	g.world.spawn_powerup(position, focus)

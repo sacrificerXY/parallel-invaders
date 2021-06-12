@@ -5,7 +5,7 @@ extends Area2D
 # var a = 2
 # var b = "text"
 
-var fire_cooldown: float = 0.5
+var fire_cooldown: float = 1
 var fire_timer: float = 0
 
 var world

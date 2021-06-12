@@ -26,6 +26,8 @@ func _on_Bullet_body_entered(body: Node):
 
 func focus():
 	focused = true
+	$Sprite.self_modulate.a = 1
 	
 func unfocus():
 	focused = false
+	$Sprite.self_modulate.a = 0.2
