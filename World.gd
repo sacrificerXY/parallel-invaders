@@ -47,13 +47,12 @@ func adjust_bouncer(area, pos: float):
 	
 func _physics_process(delta):
 	check_world_focus()
-	return
 	if past_focus == FOCUS_LEFTY:
 		if left_spawn_timer > 0:
 			left_spawn_timer -= delta
 		else:
 			left_spawn_timer += spawn_cooldown
-			spawn_ships(3, 0, 'lefty')
+			spawn_ships(5, 0, 'lefty')
 			
 	# change for temporal center
 	elif past_focus == FOCUS_RIGHTY:
@@ -61,7 +60,7 @@ func _physics_process(delta):
 			right_spawn_timer -= delta
 		else:
 			right_spawn_timer += spawn_cooldown
-			spawn_ships(3, 0.5, 'righty')
+			spawn_ships(5, 0.5, 'righty')
 			
 	else: assert(false)
 	print()
@@ -69,7 +68,7 @@ func _physics_process(delta):
 
 func spawn_ships(count: int, start_pos: float, focus: String = ''):
 	var side = 'LeftWorld' if start_pos < 0.5 else 'RightWorld'
-	var interval = 0.5 / count
+	var interval = 0.4 / count
 	var group_width = interval * ( count - 1 )
 	start_pos += 0.25 - (group_width / 2)
 	start_pos *= screen_size.x
@@ -77,7 +76,7 @@ func spawn_ships(count: int, start_pos: float, focus: String = ''):
 	for i in range(count):
 		var ship: Ship = preload('res://Ship.tscn').instance()
 		ship.position.x = i * interval * screen_size.x + start_pos
-		ship.position.y = 100
+		ship.position.y = 120
 		if focus != '':
 			ship.row_group = row_group
 			ship.add_to_group(focus)

@@ -3,18 +3,28 @@ class_name Ship
 
 signal destroyed(ship)
 
-var direction: Vector2 = Vector2.RIGHT
+var speed: float = 10
+var direction: Vector2 = Vector2.DOWN
 var is_moving := true
 
 var max_hp := 0
 var hp := 0
 
+var start_x: float
+var delta_x: float
+var delta_timer: float
+
 var row_group := 'fish'
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	reset_hp(20)
+	reset_hp(999990)
+#	direction.y = 0.025
+#	direction = direction.normalized()
+#	direction.x = 0
 	pass # Replace with function body.
+	start_x = position.x
+	delta_x = 0
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -33,13 +43,17 @@ func deal_damage(damage: float) -> void:
 		emit_signal('destroyed', self)
 		queue_free()
 
-
-func _physics_process(delta):
+func update_move(delta):
 	if is_moving:
-		var collision: KinematicCollision2D = move_and_collide(direction * 160 * delta)
+		delta_timer += delta * PI
+		position.x = start_x + 30 * sin(delta_timer)
+		var collision: KinematicCollision2D = move_and_collide(direction * speed * delta)
 		if collision:
 			if collision.collider.is_in_group('bouncer'):
 				reflect_direction()
+
+func _physics_process(delta):
+	update_move(delta)
 #				var adjust = direction * 50 * delta - collision.travel
 #				position += adjust
 #				get_tree().call_group(row_group, 'reflect_direction')
@@ -47,7 +61,7 @@ func _physics_process(delta):
 
 func reflect_direction():
 	direction.x *= -1
-	position.y += 10
+#	position.y += 10
 
 func adjust_position_x(pos: float):
 	position.x += pos

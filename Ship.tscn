@@ -4,7 +4,7 @@
 [ext_resource path="res://Ship.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 30.6751, 29.7811 )
+extents = Vector2( 30.6751, 11.1295 )
 
 [node name="Ship" type="KinematicBody2D" groups=[
 "damageable",
@@ -18,4 +18,5 @@ modulate = Color( 1, 0.380392, 0.380392, 1 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 1, 0.342716 )
 texture = ExtResource( 1 )
