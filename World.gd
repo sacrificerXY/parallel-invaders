@@ -15,6 +15,8 @@ var spawn_timer: float = 0.0
 
 
 func _ready():
+	assert(g.world == null)
+	g.world = self
 	adjust_bouncer(find_node('LeftBouncer'), 0.0)
 	adjust_bouncer(find_node('CenterBouncer'), 0.5)
 	adjust_bouncer(find_node('RightBouncer'), 1.0)
@@ -129,3 +131,8 @@ func check_world_focus():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+
+func spawn_powerup(pos: Vector2):
+	var p: Powerup = preload('res://Powerup.tscn').instance()
+	p.position = pos
+	add_child(p)

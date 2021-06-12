@@ -21,3 +21,8 @@ func link_to(ship: Ship):
 
 func on_partner_destroyed(ship: Ship):
 	queue_free()
+
+
+func queue_free():
+	.queue_free()
+	g.world.spawn_powerup(position)
