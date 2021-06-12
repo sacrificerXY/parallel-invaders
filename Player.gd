@@ -9,6 +9,7 @@ var fire_cooldown: float = 0.5
 var fire_timer: float = 0
 
 var world
+var in_center: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -37,3 +38,15 @@ func fire():
 	bullet.position = position
 	world.add_bullet(bullet)
 
+
+
+func _on_Player_body_entered(body: Node):
+	if body.name == 'CenterBouncer':
+		in_center = true
+	pass # Replace with function body.
+
+
+func _on_Player_body_exited(body):
+	if body.name == 'CenterBouncer':
+		in_center = false
+	pass # Replace with function body.

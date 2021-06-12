@@ -3,6 +3,7 @@ extends Node2D
 # past active
 const FOCUS_LEFTY: int = 1
 const FOCUS_RIGHTY: int = 2
+const FOCUS_BOTH: int = 3
 
 
 onready var screen_size: Vector2 = get_viewport_rect().size
@@ -45,7 +46,7 @@ func adjust_bouncer(area, pos: float):
 	rect.extents.x = 20
 	print(rect.extents)
 	if pos == 0.5:
-		rect.extents.x = 80
+		rect.extents.x = 60
 #		assert(false)
 	else:
 		print('qwe')
@@ -54,7 +55,7 @@ func adjust_bouncer(area, pos: float):
 	
 func _physics_process(delta):
 	check_world_focus()
-	if past_focus == FOCUS_LEFTY:
+	if past_focus == FOCUS_LEFTY or past_focus == FOCUS_BOTH:
 		if left_spawn_timer > 0:
 			left_spawn_timer -= delta
 		else:
@@ -62,7 +63,7 @@ func _physics_process(delta):
 			spawn_ships(randi() % 5 + 1, 0, 'lefty')
 			
 	# change for temporal center
-	elif past_focus == FOCUS_RIGHTY:
+	elif past_focus == FOCUS_RIGHTY or past_focus == FOCUS_BOTH:
 		if right_spawn_timer > 0:
 			right_spawn_timer -= delta
 		else:
@@ -112,6 +113,12 @@ func add_bullet(bullet: Bullet):
 	add_child(bullet)
 
 func check_world_focus():
+	if player.in_center:
+		get_tree().call_group('lefty', 'focus')
+		get_tree().call_group('righty', 'focus')
+		past_focus = FOCUS_BOTH
+		return
+		
 	var curr_focus := past_focus
 	if player.position.x < screen_size.x / 2:
 		curr_focus = FOCUS_LEFTY
