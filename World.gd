@@ -12,6 +12,8 @@ func _ready():
 	adjust_bouncer(find_node('LeftBouncer'), 0.0)
 	adjust_bouncer(find_node('CenterBouncer'), 0.5)
 	adjust_bouncer(find_node('RightBouncer'), 1.0)
+	
+	player.world = self
 	pass # Replace with function body.
 
 
@@ -26,6 +28,10 @@ func adjust_bouncer(area, pos: float):
 func _process(delta):
 	check_world_focus()
 
+
+func add_bullet(bullet: Bullet):
+	# do lefty rhigty
+	add_child(bullet)
 
 func check_world_focus():
 	var curr_focus := past_focus
