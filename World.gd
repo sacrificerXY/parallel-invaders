@@ -18,6 +18,21 @@ func _ready():
 	adjust_bouncer(find_node('CenterBouncer'), 0.5)
 	adjust_bouncer(find_node('RightBouncer'), 1.0)
 	
+	
+	var lship = preload('res://MotherShip.tscn').instance()
+	lship.position.x = 0.25 * screen_size.x
+	lship.position.y = 50
+	add_child(lship)
+	var rship = preload('res://MotherShip.tscn').instance()
+	rship.position.x = 0.75 * screen_size.x
+	rship.position.y = 50
+	add_child(rship)
+	
+#	lship.link = weakref(rship)
+#	rship.link = weakref(lship)
+	lship.link_to(rship)
+	rship.link_to(lship)
+	
 	player.world = self
 	pass # Replace with function body.
 
@@ -32,6 +47,7 @@ func adjust_bouncer(area, pos: float):
 	
 func _physics_process(delta):
 	check_world_focus()
+	return
 	if past_focus == FOCUS_LEFTY:
 		if left_spawn_timer > 0:
 			left_spawn_timer -= delta
@@ -68,7 +84,10 @@ func spawn_ships(count: int, start_pos: float, focus: String = ''):
 			ship.add_to_group(row_group)
 		find_node(side).add_child(ship)
 		
-		
+#func spawn_linked_ships():
+#	var lship = preload('res://MotherShip.tscn').instance()
+#	lshi
+	
 
 func add_bullet(bullet: Bullet):
 	# do lefty rhigty
