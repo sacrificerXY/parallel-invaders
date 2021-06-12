@@ -6,7 +6,7 @@ var direction: Vector2 = Vector2.RIGHT
 var is_updating := true
 
 var fire_cooldown: float = 1
-var fire_timer: float = 0
+var fire_timer: float = 0.1
 func _ready():
 	if randf() < 0.5:
 		direction = Vector2.LEFT
@@ -25,6 +25,10 @@ func update_fire(delta):
 		var b: Bullet = preload('res://GunnerBullet.tscn').instance()
 		b.init(self, Vector2.UP * 400)
 		b.position = position
+		if is_in_group('lefty'):
+			b.add_to_group('lefty')
+		elif is_in_group('righty'):
+			b.add_to_group('righty')
 		g.world.add_bullet(b)
 func _physics_process(delta):
 	if is_updating:
