@@ -5,7 +5,7 @@ extends Area2D
 # var a = 2
 # var b = "text"
 
-var fire_cooldown: float = 1
+var fire_cooldown: float = 0.1
 var fire_timer: float = 0
 
 var world
@@ -22,7 +22,7 @@ func _physics_process(delta):
 		h -= 1
 	if Input.is_action_pressed('move_right'):
 		h += 1
-	position.x += h * 800 * delta
+	position.x += h * 320 * delta
 
 	if fire_timer <= 0:
 		if Input.is_action_pressed('fire'): 
@@ -34,9 +34,10 @@ func _physics_process(delta):
 	
 func fire():
 	var bullet: Bullet = preload('res://Bullet.tscn').instance()
-	bullet.init(self, Vector2.UP * 600)
+	bullet.init(self, Vector2.UP * 400)
 	bullet.position = position
 	world.add_bullet(bullet)
+	bullet.focus()
 
 
 

@@ -20,7 +20,7 @@ var row_group := 'fish'
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	reset_hp(5)
+	reset_hp(20)
 #	direction.y = 0.025
 #	direction = direction.normalized()
 #	direction.x = 0

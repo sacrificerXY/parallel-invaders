@@ -3,7 +3,7 @@ extends LinkedShip
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	reset_hp(20)
+	reset_hp(999999)
 	direction = Vector2.RIGHT
 	speed = 80
 	pass # Replace with function body.

@@ -5,9 +5,7 @@
 
 [sub_resource type="RectangleShape2D" id=1]
 
-[node name="Gunner" type="KinematicBody2D" groups=[
-"lefty",
-]]
+[node name="Gunner" type="KinematicBody2D"]
 collision_layer = 8
 collision_mask = 6
 script = ExtResource( 2 )

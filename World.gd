@@ -10,7 +10,7 @@ onready var screen_size: Vector2 = get_viewport_rect().size
 onready var player := find_node('Player')
 var past_focus: int = 0
 
-var spawn_cooldown: float = 4
+var spawn_cooldown: float = 3
 var spawn_timer: float = 0.0
 
 
@@ -119,15 +119,15 @@ func check_world_focus():
 		curr_focus = FOCUS_LEFTY
 	else:
 		curr_focus = FOCUS_RIGHTY
-	if past_focus != curr_focus:
-		if curr_focus == FOCUS_LEFTY:
-			get_tree().call_group('lefty', 'focus')
-			get_tree().call_group('righty', 'unfocus')
-		elif curr_focus == FOCUS_RIGHTY:
-			get_tree().call_group('lefty', 'unfocus')
-			get_tree().call_group('righty', 'focus')
-		else:
-			assert(false)
+#	if past_focus != curr_focus:
+	if curr_focus == FOCUS_LEFTY:
+		get_tree().call_group('lefty', 'focus')
+		get_tree().call_group('righty', 'unfocus')
+	elif curr_focus == FOCUS_RIGHTY:
+		get_tree().call_group('lefty', 'unfocus')
+		get_tree().call_group('righty', 'focus')
+	else:
+		assert(false)
 	past_focus = curr_focus
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -136,13 +136,13 @@ func check_world_focus():
 func spawn_powerup(pos: Vector2, focus):
 	assert(focus == 'lefty' or focus == 'righty')
 	var p: Powerup = preload('res://Powerup.tscn').instance()
+	add_child(p)
 	p.position = pos
 	p.spawn_side = focus
-	add_child(p)
 
 
 func is_left(pos: Vector2):
-	return pos.x < screen_size.x * 0.5
+	return pos.x < (screen_size.x * 0.5)
 	
 	
 func add_gunner(gg):
