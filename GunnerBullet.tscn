@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Bullet.tscn" type="PackedScene" id=1]
+[ext_resource path="res://GunnerBullet.gd" type="Script" id=2]
+[ext_resource path="res://assets/sprites/kenney-simple-space/ship_A.png" type="Texture" id=3]
+
+[node name="GunnerBullet" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="Sprite" parent="." index="1"]
+self_modulate = Color( 0.92549, 0.941176, 0.945098, 1 )
+scale = Vector2( 0.25, 0.5 )
+texture = ExtResource( 3 )

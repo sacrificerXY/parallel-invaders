@@ -7,8 +7,8 @@ var velocity: Vector2
 func init(fired_by: Node, velocity: Vector2):
 	self.fired_by = weakref(fired_by)
 	self.velocity = velocity
-	# adjust collisions
-# Called when the node enters the scene tree for the first time.
+	
+	# TODO adjust collisions
 
 func _physics_process(delta):
 	position += self.velocity * delta
