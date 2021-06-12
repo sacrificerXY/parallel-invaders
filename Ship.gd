@@ -9,9 +9,11 @@ var is_moving := true
 var max_hp := 0
 var hp := 0
 
+var row_group := 'fish'
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	add_to_group(row_group)
 	reset_hp(20)
 	pass # Replace with function body.
 
@@ -38,8 +40,11 @@ func _physics_process(delta):
 		var collision: KinematicCollision2D = move_and_collide(direction * 400 * delta)
 		if collision:
 			if collision.collider.is_in_group('bouncer'):
-				direction.x *= -1
-				position.y += 5
+				get_tree().call_group(row_group, 'reflect_direction')
+
+func reflect_direction():
+	direction.x *= -1
+	position.y += 5
 
 func focus():
 	is_moving = true

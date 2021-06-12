@@ -30,6 +30,10 @@ config/name="Parallel Invaders"
 run/main_scene="res://World.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+g="*res://G.gd"
+
 [display]
 
 window/size/width=1280

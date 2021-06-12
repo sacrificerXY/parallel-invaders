@@ -37,6 +37,3 @@ func fire():
 	bullet.position = position
 	world.add_bullet(bullet)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
