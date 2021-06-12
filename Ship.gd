@@ -13,7 +13,6 @@ var row_group := 'fish'
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	add_to_group(row_group)
 	reset_hp(20)
 	pass # Replace with function body.
 
@@ -40,16 +39,20 @@ func _physics_process(delta):
 		var collision: KinematicCollision2D = move_and_collide(direction * 400 * delta)
 		if collision:
 			if collision.collider.is_in_group('bouncer'):
+				var adjust = direction * 400 * delta - collision.travel
+				position += adjust
 				get_tree().call_group(row_group, 'reflect_direction')
+				get_tree().call_group(row_group, 'adjust_position_x', -adjust.x)
 
 func reflect_direction():
 	direction.x *= -1
-	position.y += 5
+	position.y += 10
+
+func adjust_position_x(pos: float):
+	position.x += pos
 
 func focus():
 	is_moving = true
-	print('focus')
 
 func unfocus():
 	is_moving = false
-	print('unfocus')
