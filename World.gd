@@ -47,10 +47,6 @@ func adjust_bouncer(area, pos: float):
 	print(rect.extents)
 	if pos == 0.5:
 		rect.extents.x = 60
-#		assert(false)
-	else:
-		print('qwe')
-	print(rect.extents)
 	
 	
 func _physics_process(delta):
@@ -68,8 +64,8 @@ func _physics_process(delta):
 			right_spawn_timer -= delta
 		else:
 			right_spawn_timer += spawn_cooldown
-			spawn_ships(randi() % 5 + 1, 0.5, 'righty')
-#			spawn_linked_ships()
+#			spawn_ships(randi() % 5 + 1, 0.5, 'righty')
+			spawn_linked_ships()
 			
 	else: assert(false)
 			
