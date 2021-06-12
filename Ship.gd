@@ -36,13 +36,14 @@ func deal_damage(damage: float) -> void:
 
 func _physics_process(delta):
 	if is_moving:
-		var collision: KinematicCollision2D = move_and_collide(direction * 400 * delta)
+		var collision: KinematicCollision2D = move_and_collide(direction * 160 * delta)
 		if collision:
 			if collision.collider.is_in_group('bouncer'):
-				var adjust = direction * 400 * delta - collision.travel
-				position += adjust
-				get_tree().call_group(row_group, 'reflect_direction')
-				get_tree().call_group(row_group, 'adjust_position_x', -adjust.x)
+				reflect_direction()
+#				var adjust = direction * 50 * delta - collision.travel
+#				position += adjust
+#				get_tree().call_group(row_group, 'reflect_direction')
+#				get_tree().call_group(row_group, 'adjust_position_x', -adjust.x)
 
 func reflect_direction():
 	direction.x *= -1

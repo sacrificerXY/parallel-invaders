@@ -9,7 +9,7 @@ onready var screen_size: Vector2 = get_viewport_rect().size
 onready var player := find_node('Player')
 var past_focus: int = 0
 
-var spawn_cooldown: float = 1.0
+var spawn_cooldown: float = 4
 var left_spawn_timer: float = 0.0
 var right_spawn_timer: float = 0.0
 
@@ -37,12 +37,15 @@ func _physics_process(delta):
 			left_spawn_timer -= delta
 		else:
 			left_spawn_timer += spawn_cooldown
-			spawn_ships(4, 0, 'lefty')
+			spawn_ships(3, 0, 'lefty')
 			
 	# change for temporal center
 	elif past_focus == FOCUS_RIGHTY:
 		if right_spawn_timer > 0:
 			right_spawn_timer -= delta
+		else:
+			right_spawn_timer += spawn_cooldown
+			spawn_ships(3, 0.5, 'righty')
 			
 	else: assert(false)
 	print()
