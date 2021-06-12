@@ -8,6 +8,10 @@ var link: WeakRef
 # var a = 2
 # var b = "text"
 
+func _ready():
+	sway_amount = 200
+	sway_time_factor = 0.8
+
 
 func link_to(ship: Ship):
 	assert(ship)
@@ -17,11 +21,3 @@ func link_to(ship: Ship):
 
 func on_partner_destroyed(ship: Ship):
 	queue_free()
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass

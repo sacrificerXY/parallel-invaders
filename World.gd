@@ -52,7 +52,7 @@ func _physics_process(delta):
 			left_spawn_timer -= delta
 		else:
 			left_spawn_timer += spawn_cooldown
-			spawn_ships(5, 0, 'lefty')
+			spawn_ships(randi() % 5 + 1, 0, 'lefty')
 			
 	# change for temporal center
 	elif past_focus == FOCUS_RIGHTY:
@@ -60,7 +60,8 @@ func _physics_process(delta):
 			right_spawn_timer -= delta
 		else:
 			right_spawn_timer += spawn_cooldown
-			spawn_ships(5, 0.5, 'righty')
+#			spawn_ships(randi() % 5 + 1, 0.5, 'righty')
+			spawn_linked_ships()
 			
 	else: assert(false)
 	print()
@@ -83,9 +84,17 @@ func spawn_ships(count: int, start_pos: float, focus: String = ''):
 			ship.add_to_group(row_group)
 		find_node(side).add_child(ship)
 		
-#func spawn_linked_ships():
-#	var lship = preload('res://MotherShip.tscn').instance()
-#	lshi
+func spawn_linked_ships():
+	var lship = preload('res://LinkedShip.tscn').instance()
+	lship.position.x = 0.25 * screen_size.x
+	lship.position.y = 120
+	add_child(lship)
+	var rship = preload('res://LinkedShip.tscn').instance()
+	rship.position.x = 0.75 * screen_size.x
+	rship.position.y = 120
+	add_child(rship)
+	lship.link_to(rship)
+	rship.link_to(lship)
 	
 
 func add_bullet(bullet: Bullet):

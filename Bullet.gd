@@ -16,6 +16,6 @@ func _physics_process(delta):
 
 func _on_Bullet_body_entered(body: Node):
 	if body.is_in_group('damageable'):
-		body.deal_damage(100)
+		body.deal_damage(5)
 		queue_free()
 	pass # Replace with function body.

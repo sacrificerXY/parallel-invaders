@@ -13,12 +13,14 @@ var hp := 0
 var start_x: float
 var delta_x: float
 var delta_timer: float
+var sway_amount := 40
+var sway_time_factor: float = 1
 
 var row_group := 'fish'
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	reset_hp(999990)
+	reset_hp(5)
 #	direction.y = 0.025
 #	direction = direction.normalized()
 #	direction.x = 0
@@ -45,8 +47,8 @@ func deal_damage(damage: float) -> void:
 
 func update_move(delta):
 	if is_moving:
-		delta_timer += delta * PI
-		position.x = start_x + 30 * sin(delta_timer)
+		delta_timer += delta * PI * sway_time_factor
+		position.x = start_x + sway_amount * sin(delta_timer)
 		var collision: KinematicCollision2D = move_and_collide(direction * speed * delta)
 		if collision:
 			if collision.collider.is_in_group('bouncer'):

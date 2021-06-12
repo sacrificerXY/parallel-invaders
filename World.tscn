@@ -38,9 +38,9 @@ collision_mask = 0
 [node name="rect" type="CollisionShape2D" parent="Bouncers/RightBouncer"]
 shape = SubResource( 1 )
 
-[node name="LeftWorld" type="Node" parent="."]
+[node name="LeftWorld" type="YSort" parent="."]
 
-[node name="RightWorld" type="Node" parent="."]
+[node name="RightWorld" type="YSort" parent="."]
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 926.379, 569.977 )
