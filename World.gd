@@ -11,8 +11,8 @@ onready var player := find_node('Player')
 var past_focus: int = 0
 
 var spawn_cooldown: float = 4
-var left_spawn_timer: float = 0.0
-var right_spawn_timer: float = 0.0
+var spawn_timer: float = 0.0
+
 
 func _ready():
 	adjust_bouncer(find_node('LeftBouncer'), 0.0)
@@ -51,23 +51,19 @@ func adjust_bouncer(area, pos: float):
 	
 func _physics_process(delta):
 	check_world_focus()
-	if past_focus == FOCUS_LEFTY or past_focus == FOCUS_BOTH:
-		if left_spawn_timer > 0:
-			left_spawn_timer -= delta
+	if spawn_timer > 0:
+		spawn_timer -= delta
+	else:
+		spawn_timer += spawn_cooldown
+		if randf() < 0.8:
+			if past_focus == FOCUS_LEFTY or past_focus == FOCUS_BOTH:
+				spawn_ships(randi() % 5 + 1, 0, 'lefty')
+			elif past_focus == FOCUS_RIGHTY or past_focus == FOCUS_BOTH:
+				spawn_ships(randi() % 5 + 1, 0.5, 'righty')
+			else: assert(false)
 		else:
-			left_spawn_timer += spawn_cooldown
-			spawn_ships(randi() % 5 + 1, 0, 'lefty')
-			
-	# change for temporal center
-	elif past_focus == FOCUS_RIGHTY or past_focus == FOCUS_BOTH:
-		if right_spawn_timer > 0:
-			right_spawn_timer -= delta
-		else:
-			right_spawn_timer += spawn_cooldown
-#			spawn_ships(randi() % 5 + 1, 0.5, 'righty')
 			spawn_linked_ships()
 			
-	else: assert(false)
 			
 
 func spawn_ships(count: int, start_pos: float, focus: String = ''):
