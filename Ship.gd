@@ -27,6 +27,10 @@ func _ready():
 	pass # Replace with function body.
 	start_x = position.x
 	delta_x = 0
+	if is_in_group('lefty'):
+		$Sprite.self_modulate = Color('#e74c3c')
+	elif is_in_group('righty'):
+		$Sprite.self_modulate = Color('#3498db')
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -70,6 +74,8 @@ func adjust_position_x(pos: float):
 
 func focus():
 	is_moving = true
+	$Sprite.self_modulate.a = 1
 
 func unfocus():
 	is_moving = false
+	$Sprite.self_modulate.a = 0.4
